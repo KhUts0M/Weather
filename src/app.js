@@ -34,17 +34,18 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastDay, index) {
+  let days = ["mon", "tue", "wed"];
+
+  days.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
         `
-<div class="row">
               <div class="col-2">
                 <div class="weather-forecast-date">${formatDay}</div>
                 <img
                   src="https://openweathermap.org/img/wn/${
-                    forecastDay.weather[0].icoon
+                    forecastDay.weather[0].icon
                   }@2x.png"
                   alt=""
                   width="42"
@@ -58,15 +59,13 @@ function displayForecast(response) {
                   )}°</span>
                 </div>
               </div>
-              </div>
             `;
     }
   });
   forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
+  forecastElement.innerHTML = forecast;
 }
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "b86b691495b465806abd366b749605e1";
   let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
@@ -138,3 +137,4 @@ let celciusLink = document.querySelector("#celcius-link");
 celciusLink.addEventListener("click", showCelcius);
 
 search("Polokwane");
+displayForecast();
