@@ -58,3 +58,13 @@ span.units {
 span.units:hover {
   text-decoration: none;
 }
+
+.weather-forecast {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+  color: #000;
+}
