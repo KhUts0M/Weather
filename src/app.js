@@ -21,7 +21,7 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 function formatDay(timestamp) {
-  let date = new date(timestamp * 1000);
+  let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -36,13 +36,15 @@ function displayForecast(response) {
   let forecastHTML = `<div class="row">`;
   let days = ["mon", "tue", "wed"];
 
-  days.forEach(function (forecastDay, index) {
+  forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
         `
               <div class="col-2">
-                <div class="weather-forecast-date">${formatDay}</div>
+                <div class="weather-forecast-date">${formatDay(
+                  forecastDay.dt * 1000
+                )}</div>
                 <img
                   src="https://openweathermap.org/img/wn/${
                     forecastDay.weather[0].icon
@@ -63,11 +65,11 @@ function displayForecast(response) {
     }
   });
   forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecast;
+  forecastElement.innerHTML = forecastHTML;
 }
 function getForecast(coordinates) {
-  let apiKey = "b86b691495b465806abd366b749605e1";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiKey = "53f3bc1f5d348c44be3e3754c7185573";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -137,4 +139,3 @@ let celciusLink = document.querySelector("#celcius-link");
 celciusLink.addEventListener("click", showCelcius);
 
 search("Polokwane");
-displayForecast();

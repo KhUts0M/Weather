@@ -33,6 +33,21 @@ strong {
   height: 64px;
   width: 64px;
 }
+
+.container {
+  background: linear-gradient(
+    105.9deg,
+    rgb(15, 209, 165) 3.8%,
+    rgb(15, 157, 209) 20.8%,
+    rgb(133, 13, 230) 51.9%,
+    rgb(230, 13, 202) 73.1%,
+    rgb(242, 180, 107) 94.1%
+  );
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 60px;
+}
+
 li {
   list-style: none;
   margin: 0;
